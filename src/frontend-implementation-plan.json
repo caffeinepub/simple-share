@@ -1,57 +1,151 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add 'MOD x RDX' branding text and update UI color to #7B2EFF",
+  "title": "Optimize upload flow, center-align menu items, and update post control icons",
   "requirements": [
     {
-      "id": "REQ-30",
-      "summary": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page, ensuring horizontal alignment",
+      "id": "REQ-51",
+      "summary": "Add comprehensive error handling to useCreatePost mutation hook to catch and display clear error messages for network errors, authorization failures, and validation errors",
       "acceptanceCriteria": [
-        "The text 'MOD x RDX' appears next to the circular logo on the homepage",
-        "The text uses a bold sans-serif font family",
-        "The text and logo are horizontally aligned",
-        "The layout remains responsive on all screen sizes"
+        "Error messages are displayed to users when upload fails",
+        "Different error types (network, auth, validation) show specific messages",
+        "Users can understand what went wrong and how to fix it"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/HomePage.tsx",
+          "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo. Wrap the logo image and text in a flex container with horizontal alignment (items-center). Apply font-bold and sans-serif font family to the text element. Ensure the container is responsive across all screen sizes."
+          "description": "Enhance the useCreatePost mutation hook with comprehensive error handling that catches different error types (network errors, authorization failures, validation errors) and displays user-friendly error messages using toast notifications"
         }
       ]
     },
     {
-      "id": "REQ-31",
-      "summary": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation, ensuring horizontal alignment",
+      "id": "REQ-52",
+      "summary": "Add loading state indicators to post creation form showing when a post is being submitted, disabling the submit button during upload, and providing visual feedback",
       "acceptanceCriteria": [
-        "The text 'MOD x RDX' appears next to the circular logo in the mobile sheet menu",
-        "The text uses a bold sans-serif font family",
-        "The text and logo are horizontally aligned within the mobile menu",
-        "The mobile menu layout remains clean and functional"
+        "Submit button is disabled while upload is in progress",
+        "Loading spinner or indicator is visible during submission",
+        "Form fields are disabled during submission to prevent duplicate submissions"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CreatePostPage.tsx",
+          "operation": "modify",
+          "description": "Add loading state UI to the post creation form by using the mutation's isPending state to disable the submit button, display a loading spinner, and disable form fields during submission to prevent duplicate submissions"
+        }
+      ]
+    },
+    {
+      "id": "REQ-53",
+      "summary": "Add retry logic with exponential backoff to useCreatePost mutation to automatically retry failed uploads up to 3 times before showing an error",
+      "acceptanceCriteria": [
+        "Failed uploads are automatically retried up to 3 times",
+        "Retry delays increase exponentially (e.g., 1s, 2s, 4s)",
+        "Error is only shown after all retry attempts are exhausted"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add retry logic to the useCreatePost mutation using TanStack Query's retry configuration with exponential backoff (retry: 3, retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000)) to automatically retry failed uploads up to 3 times with increasing delays"
+        }
+      ]
+    },
+    {
+      "id": "REQ-54",
+      "summary": "Add form validation to post creation form that validates required fields before submission and displays inline validation errors",
+      "acceptanceCriteria": [
+        "Required fields show error messages if empty on submit",
+        "Image URL is validated as a proper URL format when provided",
+        "Form cannot be submitted until all validation passes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CreatePostPage.tsx",
+          "operation": "modify",
+          "description": "Add client-side form validation for required fields (title, description, content) that displays inline error messages below each field when validation fails, validates image URL format when provided, and prevents form submission until all validation passes"
+        }
+      ]
+    },
+    {
+      "id": "REQ-55",
+      "summary": "Update useCreatePost mutation to automatically invalidate and refetch posts query after successful post creation ensuring the new post appears immediately",
+      "acceptanceCriteria": [
+        "New posts appear in the homepage list immediately after creation",
+        "No manual page refresh is required to see new posts",
+        "Post list is sorted correctly with newest posts first"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add onSuccess callback to the useCreatePost mutation that calls queryClient.invalidateQueries for the 'posts' query key to automatically refetch the posts list after successful post creation, ensuring new posts appear immediately in the homepage"
+        }
+      ]
+    },
+    {
+      "id": "REQ-56",
+      "summary": "Add success toast notification that displays when a post is successfully created providing clear feedback that the upload completed",
+      "acceptanceCriteria": [
+        "Success message displays when post is created",
+        "Message confirms the post was saved successfully",
+        "Toast notification auto-dismisses after a few seconds"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CreatePostPage.tsx",
+          "operation": "modify",
+          "description": "Add success toast notification using the toast function from the existing Toaster component that displays when the mutation succeeds, showing a message like 'Post created successfully!' that auto-dismisses after a few seconds"
+        }
+      ]
+    },
+    {
+      "id": "REQ-57",
+      "summary": "Update three-dot menu dropdown to center-align all menu items (Home, Contact Us, Privacy Policy) vertically for a clean, centered list presentation",
+      "acceptanceCriteria": [
+        "All menu items are center-aligned horizontally in the dropdown",
+        "Alignment is consistent across all menu items",
+        "Menu maintains clean, polished appearance"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Layout.tsx",
           "operation": "modify",
-          "description": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo within the mobile sheet menu. Wrap the logo and text in a flex container with horizontal alignment (items-center). Apply font-bold and sans-serif font family to the text element. Maintain clean mobile menu layout and functionality."
+          "description": "Update the Sheet component's mobile menu section to center-align all menu items (Home, Contact Us, Privacy Policy) by adding text-center class to the SheetContent or individual menu item links"
         }
       ]
     },
     {
-      "id": "REQ-32",
-      "summary": "Update the website background and UI color scheme to use #7B2EFF by modifying root CSS variables for both light and dark modes",
+      "id": "REQ-58",
+      "summary": "Replace existing Edit icon button with a pencil icon (using lucide-react Pencil component), maintaining position at top of post card, developer-only visibility, and all existing edit functionality",
       "acceptanceCriteria": [
-        "The background color uses #7B2EFF throughout the site",
-        "The color scheme is consistent across all pages",
-        "Both light and dark mode configurations use the #7B2EFF color appropriately",
-        "Text remains readable against the new background color",
-        "The color applies to relevant UI elements (background, cards, borders, etc.)"
+        "Edit button displays a pencil icon instead of current icon",
+        "Icon is positioned at the top of the post card",
+        "Only visible to authenticated admin users",
+        "Clicking opens the edit dialog with pre-filled post data"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/components/PostCard.tsx",
           "operation": "modify",
-          "description": "Update the root CSS variables in both light and dark mode configurations to use #7B2EFF (converted to OKLCH format). Modify background, primary, accent, and other relevant color tokens to incorporate the purple color while ensuring text readability. Apply the color scheme consistently to backgrounds, cards, borders, and UI elements throughout the application."
+          "description": "Replace the existing Edit icon button with the Pencil icon from lucide-react while maintaining its position at the top of the post card, admin-only visibility check, and all existing edit functionality including opening the EditPostDialog with pre-filled data"
+        }
+      ]
+    },
+    {
+      "id": "REQ-59",
+      "summary": "Replace existing Delete icon button with a trash/delete icon (using lucide-react Trash2 component), maintaining position at top of post card, developer-only visibility, and all existing delete functionality",
+      "acceptanceCriteria": [
+        "Delete button displays a trash icon instead of current icon",
+        "Icon is positioned at the top of the post card",
+        "Only visible to authenticated admin users",
+        "Clicking opens the delete confirmation dialog"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PostCard.tsx",
+          "operation": "modify",
+          "description": "Replace the existing Delete icon button with the Trash2 icon from lucide-react while maintaining its position at the top of the post card, admin-only visibility check, and all existing delete functionality including opening the DeletePostDialog confirmation"
         }
       ]
     }

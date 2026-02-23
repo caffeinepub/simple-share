@@ -1,79 +1,192 @@
 {
   "kind": "build_request",
-  "title": "Add 'MOD x RDX' branding text and update UI color to #7B2EFF",
-  "projectName": "MOD x RDX",
+  "title": "Optimize upload flow, center-align menu items, and update post control icons",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-30",
-      "text": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page in frontend/src/pages/HomePage.tsx, ensuring the text and logo are horizontally aligned",
+      "id": "REQ-51",
+      "text": "Add comprehensive error handling to the useCreatePost mutation hook in frontend/src/hooks/useQueries.ts to catch and display clear error messages when post creation fails, including network errors, authorization failures, and validation errors",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "Please add the text \"MOD x RDX\" in **bold sans-serif font**: - Next to the MOD x RDX logo on the **left side of the main page**"
+          "Uploads sometimes fail or get stuck and the post/media does not appear after submission. There are no clear error messages shown. Please optimize the upload flow, handling, and performance so uploads work reliably every time."
         ]
       },
       "acceptanceCriteria": [
-        "The text 'MOD x RDX' appears next to the circular logo on the homepage",
-        "The text uses a bold sans-serif font family",
-        "The text and logo are horizontally aligned",
-        "The layout remains responsive on all screen sizes"
+        "Error messages are displayed to users when upload fails",
+        "Different error types (network, auth, validation) show specific messages",
+        "Users can understand what went wrong and how to fix it"
       ]
     },
     {
-      "id": "REQ-31",
-      "text": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation in frontend/src/components/Layout.tsx, ensuring the text and logo are horizontally aligned",
+      "id": "REQ-52",
+      "text": "Add loading state indicators to the post creation form in frontend/src/pages/CreatePostPage.tsx that show when a post is being submitted, disable the submit button during upload, and provide visual feedback that the operation is in progress",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "Please add the text \"MOD x RDX\" in **bold sans-serif font**: - Next to the MOD x RDX logo in the **three-dot menu**"
+          "Uploads sometimes fail or get stuck and the post/media does not appear after submission."
         ]
       },
       "acceptanceCriteria": [
-        "The text 'MOD x RDX' appears next to the circular logo in the mobile sheet menu",
-        "The text uses a bold sans-serif font family",
-        "The text and logo are horizontally aligned within the mobile menu",
-        "The mobile menu layout remains clean and functional"
+        "Submit button is disabled while upload is in progress",
+        "Loading spinner or indicator is visible during submission",
+        "Form fields are disabled during submission to prevent duplicate submissions"
       ]
     },
     {
-      "id": "REQ-32",
-      "text": "Update the website background and UI color scheme throughout all pages in frontend/src/index.css to use the hex color #7B2EFF by modifying the root CSS variables for both light and dark modes",
+      "id": "REQ-53",
+      "text": "Add retry logic with exponential backoff to the useCreatePost mutation in frontend/src/hooks/useQueries.ts to automatically retry failed uploads up to 3 times before showing an error, improving reliability for intermittent network issues",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-5"
         ],
         "quotes": [
-          "Also, please set the website background/UI color live using this hex code: #7B2EFF"
+          "Please optimize the upload flow, handling, and performance so uploads work reliably every time."
         ]
       },
       "acceptanceCriteria": [
-        "The background color uses #7B2EFF throughout the site",
-        "The color scheme is consistent across all pages",
-        "Both light and dark mode configurations use the #7B2EFF color appropriately",
-        "Text remains readable against the new background color",
-        "The color applies to relevant UI elements (background, cards, borders, etc.)"
+        "Failed uploads are automatically retried up to 3 times",
+        "Retry delays increase exponentially (e.g., 1s, 2s, 4s)",
+        "Error is only shown after all retry attempts are exhausted"
+      ]
+    },
+    {
+      "id": "REQ-54",
+      "text": "Add form validation to the post creation form in frontend/src/pages/CreatePostPage.tsx that validates required fields (title, description, content) before submission and displays inline validation errors for missing or invalid data",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please optimize the upload flow, handling, and performance so uploads work reliably every time."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Required fields show error messages if empty on submit",
+        "Image URL is validated as a proper URL format when provided",
+        "Form cannot be submitted until all validation passes"
+      ]
+    },
+    {
+      "id": "REQ-55",
+      "text": "Update the useCreatePost mutation in frontend/src/hooks/useQueries.ts to automatically invalidate and refetch the posts query immediately after successful post creation, ensuring the new post appears in the homepage list without manual refresh",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "posts/media does not appear after submission",
+          "Please optimize the upload flow, handling, and performance so uploads work reliably every time."
+        ]
+      },
+      "acceptanceCriteria": [
+        "New posts appear in the homepage list immediately after creation",
+        "No manual page refresh is required to see new posts",
+        "Post list is sorted correctly with newest posts first"
+      ]
+    },
+    {
+      "id": "REQ-56",
+      "text": "Add success toast notification in frontend/src/pages/CreatePostPage.tsx that displays when a post is successfully created, providing clear feedback that the upload completed and the post was saved",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please optimize the upload flow, handling, and performance so uploads work reliably every time."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Success message displays when post is created",
+        "Message confirms the post was saved successfully",
+        "Toast notification auto-dismisses after a few seconds"
+      ]
+    },
+    {
+      "id": "REQ-57",
+      "text": "Update the three-dot menu dropdown in frontend/src/components/Layout.tsx to center-align all menu items (Home, Contact Us, Privacy Policy) vertically for a clean, centered list presentation",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please align the menu items properly from the left side to the center",
+          "I want the menu items to be center-aligned in the three-dot menu. All items should be evenly centered (not left-aligned), like a clean vertical center list"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All menu items are center-aligned horizontally in the dropdown",
+        "Alignment is consistent across all menu items",
+        "Menu maintains clean, polished appearance"
+      ]
+    },
+    {
+      "id": "REQ-58",
+      "text": "Replace the existing Edit icon button in frontend/src/components/PostCard.tsx with a pencil icon (using lucide-react Pencil component), maintaining its position at the top of the post card, developer-only visibility, and all existing edit functionality including form pre-fill",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Use a pencil icon for the Edit action",
+          "Yes, the pencil icon (Edit) and trash icon (Delete) should replace the existing icon buttons at the top of each post. These are the same developer-only controls, just with the correct icons and clean UI."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Edit button displays a pencil icon instead of current icon",
+        "Icon is positioned at the top of the post card",
+        "Only visible to authenticated admin users",
+        "Clicking opens the edit dialog with pre-filled post data"
+      ]
+    },
+    {
+      "id": "REQ-59",
+      "text": "Replace the existing Delete icon button in frontend/src/components/PostCard.tsx with a trash/delete icon (using lucide-react Trash2 component), maintaining its position at the top of the post card, developer-only visibility, and all existing delete functionality including confirmation dialog",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Use a trash/delete icon for the Delete action",
+          "Yes, the pencil icon (Edit) and trash icon (Delete) should replace the existing icon buttons at the top of each post. These are the same developer-only controls, just with the correct icons and clean UI."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Delete button displays a trash icon instead of current icon",
+        "Icon is positioned at the top of the post card",
+        "Only visible to authenticated admin users",
+        "Clicking opens the delete confirmation dialog"
       ]
     }
   ],
   "constraints": [
-    "Keep the existing icon.png logo unchanged",
-    "Do not modify the backend",
-    "Preserve all existing functionality and features",
-    "Maintain responsive design for all screen sizes"
+    "Do not modify the useInternetIdentity hook in frontend/src/hooks/useInternetIdentity.ts",
+    "Do not modify the useActor hook in frontend/src/hooks/useActor.ts",
+    "Do not modify any UI components in frontend/src/components/ui",
+    "Maintain single-actor architecture in backend/main.mo",
+    "Preserve existing admin authorization logic for edit and delete operations",
+    "Do not change the post data model in backend/main.mo"
   ],
   "nonGoals": [
-    "Changing the logo image itself",
-    "Modifying post creation or display functionality",
-    "Altering navigation structure or links",
-    "Adding new pages or routes"
+    "Implementing file upload capabilities for images (only URL input is supported)",
+    "Adding batch operations for posts",
+    "Implementing post versioning or history",
+    "Adding advanced image processing or compression",
+    "Implementing offline support or PWA features",
+    "Adding analytics or tracking for upload success rates"
   ],
   "imageRequirements": {
     "required": [],

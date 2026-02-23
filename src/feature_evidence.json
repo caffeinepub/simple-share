@@ -2,26 +2,122 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-next-to-the-icon-png-logo-on-the-left-side-of-the-main-page-in-frontend-src-pages-homepage-tsx-ensuring-the-text-and-logo-are-horizontally-aligned",
-      "featureTitle": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page in frontend/src/pages/HomePage.tsx, ensuring the text and logo are horizontally aligned",
+      "featureId": "feature-add-comprehensive-error-handling-to-the-usecreatepost-mutation-hook-in-frontend-src-hooks-usequeries-ts-to-catch-and-display-clear-error-messages-when-post-creation-fails-including-network-errors-authorization-failures-and-validation-errors",
+      "featureTitle": "Add comprehensive error handling to the useCreatePost mutation hook in frontend/src/hooks/useQueries.ts to catch and display clear error messages when post creation fails, including network errors, authorization failures, and validation errors",
       "files": [
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-30"
+        "REQ-51"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-next-to-the-icon-png-logo-in-the-mobile-sheet-menu-navigation-in-frontend-src-components-layout-tsx-ensuring-the-text-and-logo-are-horizontally-aligned",
-      "featureTitle": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation in frontend/src/components/Layout.tsx, ensuring the text and logo are horizontally aligned",
+      "featureId": "feature-add-loading-state-indicators-to-the-post-creation-form-in-frontend-src-pages-createpostpage-tsx-that-show-when-a-post-is-being-submitted-disable-the-submit-button-during-upload-and-provide-visual-feedback-that-the-operation-is-in-progress",
+      "featureTitle": "Add loading state indicators to the post creation form in frontend/src/pages/CreatePostPage.tsx that show when a post is being submitted, disable the submit button during upload, and provide visual feedback that the operation is in progress",
+      "files": [
+        "frontend/src/pages/CreatePostPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-52"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-retry-logic-with-exponential-backoff-to-the-usecreatepost-mutation-in-frontend-src-hooks-usequeries-ts-to-automatically-retry-failed-uploads-up-to-3-times-before-showing-an-error-improving-reliability-for-intermittent-network-issues",
+      "featureTitle": "Add retry logic with exponential backoff to the useCreatePost mutation in frontend/src/hooks/useQueries.ts to automatically retry failed uploads up to 3 times before showing an error, improving reliability for intermittent network issues",
+      "files": [
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-53"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-form-validation-to-the-post-creation-form-in-frontend-src-pages-createpostpage-tsx-that-validates-required-fields-title-description-content-before-submission-and-displays-inline-validation-errors-for-missing-or-invalid-data",
+      "featureTitle": "Add form validation to the post creation form in frontend/src/pages/CreatePostPage.tsx that validates required fields (title, description, content) before submission and displays inline validation errors for missing or invalid data",
+      "files": [
+        "frontend/src/pages/CreatePostPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-54"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-usecreatepost-mutation-in-frontend-src-hooks-usequeries-ts-to-automatically-invalidate-and-refetch-the-posts-query-immediately-after-successful-post-creation-ensuring-the-new-post-appears-in-the-homepage-list-without-manual-refresh",
+      "featureTitle": "Update the useCreatePost mutation in frontend/src/hooks/useQueries.ts to automatically invalidate and refetch the posts query immediately after successful post creation, ensuring the new post appears in the homepage list without manual refresh",
+      "files": [
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-55"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-success-toast-notification-in-frontend-src-pages-createpostpage-tsx-that-displays-when-a-post-is-successfully-created-providing-clear-feedback-that-the-upload-completed-and-the-post-was-saved",
+      "featureTitle": "Add success toast notification in frontend/src/pages/CreatePostPage.tsx that displays when a post is successfully created, providing clear feedback that the upload completed and the post was saved",
+      "files": [
+        "frontend/src/pages/CreatePostPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-56"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-three-dot-menu-dropdown-in-frontend-src-components-layout-tsx-to-center-align-all-menu-items-home-contact-us-privacy-policy-vertically-for-a-clean-centered-list-presentation",
+      "featureTitle": "Update the three-dot menu dropdown in frontend/src/components/Layout.tsx to center-align all menu items (Home, Contact Us, Privacy Policy) vertically for a clean, centered list presentation",
       "files": [
         "frontend/src/components/Layout.tsx"
       ],
@@ -30,28 +126,49 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-31"
+        "REQ-57"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-website-background-and-ui-color-scheme-throughout-all-pages-in-frontend-src-index-css-to-use-the-hex-color-7b2eff-by-modifying-the-root-css-variables-for-both-light-and-dark-modes",
-      "featureTitle": "Update the website background and UI color scheme throughout all pages in frontend/src/index.css to use the hex color #7B2EFF by modifying the root CSS variables for both light and dark modes",
+      "featureId": "feature-replace-the-existing-edit-icon-button-in-frontend-src-components-postcard-tsx-with-a-pencil-icon-using-lucide-react-pencil-component-maintaining-its-position-at-the-top-of-the-post-card-developer-only-visibility-and-all-existing-edit-functionality-including-form-pre-fill",
+      "featureTitle": "Replace the existing Edit icon button in frontend/src/components/PostCard.tsx with a pencil icon (using lucide-react Pencil component), maintaining its position at the top of the post card, developer-only visibility, and all existing edit functionality including form pre-fill",
       "files": [
-        "frontend/src/index.css"
+        "frontend/src/components/PostCard.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-32"
+        "REQ-58"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-the-existing-delete-icon-button-in-frontend-src-components-postcard-tsx-with-a-trash-delete-icon-using-lucide-react-trash2-component-maintaining-its-position-at-the-top-of-the-post-card-developer-only-visibility-and-all-existing-delete-functionality-including-confirmation-dialog",
+      "featureTitle": "Replace the existing Delete icon button in frontend/src/components/PostCard.tsx with a trash/delete icon (using lucide-react Trash2 component), maintaining its position at the top of the post card, developer-only visibility, and all existing delete functionality including confirmation dialog",
+      "files": [
+        "frontend/src/components/PostCard.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-59"
       ],
       "confidence": "high"
     }

@@ -8,6 +8,11 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
 export const ContentType = IDL.Variant({
   'link' : IDL.Null,
   'text' : IDL.Null,
@@ -23,21 +28,44 @@ export const Post = IDL.Record({
   'imageUrl' : IDL.Opt(IDL.Text),
   'timestamp' : Time,
 });
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createPost' : IDL.Func(
       [IDL.Text, IDL.Text, ContentType, IDL.Text, IDL.Opt(IDL.Text)],
       [IDL.Nat],
       [],
     ),
+  'deletePost' : IDL.Func([IDL.Nat], [], []),
   'getAllPosts' : IDL.Func([], [IDL.Vec(Post)], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getPost' : IDL.Func([IDL.Nat], [Post], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'searchPosts' : IDL.Func([IDL.Text], [IDL.Vec(Post)], ['query']),
+  'updatePost' : IDL.Func(
+      [IDL.Nat, IDL.Text, IDL.Text, ContentType, IDL.Text, IDL.Opt(IDL.Text)],
+      [],
+      [],
+    ),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
   const ContentType = IDL.Variant({
     'link' : IDL.Null,
     'text' : IDL.Null,
@@ -53,16 +81,34 @@ export const idlFactory = ({ IDL }) => {
     'imageUrl' : IDL.Opt(IDL.Text),
     'timestamp' : Time,
   });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
   
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createPost' : IDL.Func(
         [IDL.Text, IDL.Text, ContentType, IDL.Text, IDL.Opt(IDL.Text)],
         [IDL.Nat],
         [],
       ),
+    'deletePost' : IDL.Func([IDL.Nat], [], []),
     'getAllPosts' : IDL.Func([], [IDL.Vec(Post)], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getPost' : IDL.Func([IDL.Nat], [Post], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'searchPosts' : IDL.Func([IDL.Text], [IDL.Vec(Post)], ['query']),
+    'updatePost' : IDL.Func(
+        [IDL.Nat, IDL.Text, IDL.Text, ContentType, IDL.Text, IDL.Opt(IDL.Text)],
+        [],
+        [],
+      ),
   });
 };
 

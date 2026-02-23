@@ -1,10 +1,15 @@
+import { StrictMode } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider, createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
-import { Layout } from './components/Layout';
+import { Toaster } from '@/components/ui/sonner';
+import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import CreatePostPage from './pages/CreatePostPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+
+const queryClient = new QueryClient();
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -57,5 +62,12 @@ declare module '@tanstack/react-router' {
 }
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Toaster />
+      </QueryClientProvider>
+    </StrictMode>
+  );
 }

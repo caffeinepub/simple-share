@@ -1,11 +1,17 @@
 # Specification
 
 ## Summary
-**Goal:** Add "MOD x RDX" branding text next to the logo and update the website color scheme to #7B2EFF.
+**Goal:** Improve upload reliability, center-align dropdown menu items, and update post control icons to pencil and trash.
 
 **Planned changes:**
-- Add "MOD x RDX" text in bold sans-serif font next to the icon.png logo on the homepage, horizontally aligned
-- Add "MOD x RDX" text in bold sans-serif font next to the icon.png logo in the mobile sheet menu, horizontally aligned
-- Update the website background and UI color scheme to use #7B2EFF across all pages by modifying CSS variables for both light and dark modes
+- Add comprehensive error handling with clear messages for post creation failures
+- Add loading indicators and disable submit button during post uploads
+- Implement automatic retry logic with exponential backoff for failed uploads
+- Add form validation for required fields before submission
+- Automatically refresh post list after successful post creation
+- Add success toast notification when posts are created
+- Center-align all menu items in the three-dot dropdown menu
+- Replace Edit icon with pencil icon (Pencil component from lucide-react)
+- Replace Delete icon with trash icon (Trash2 component from lucide-react)
 
-**User-visible outcome:** The website displays "MOD x RDX" branding text next to the logo on the homepage and in the mobile menu, and features a purple (#7B2EFF) color scheme throughout the interface.
+**User-visible outcome:** Users will experience reliable uploads with clear feedback, centered menu items in the dropdown, and intuitive pencil/trash icons for editing and deleting posts.

@@ -1,96 +1,122 @@
-import { Outlet, Link, useNavigate } from '@tanstack/react-router';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Plus } from 'lucide-react';
+import { Link, Outlet, useNavigate } from '@tanstack/react-router';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from './ui/sheet';
+import { useInternetIdentity } from '../hooks/useInternetIdentity';
+import { useQueryClient } from '@tanstack/react-query';
 
-export function Layout() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Layout() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { login, clear, loginStatus, identity } = useInternetIdentity();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const isAuthenticated = !!identity;
+  const isLoggingIn = loginStatus === 'logging-in';
+
+  const handleAuth = async () => {
+    if (isAuthenticated) {
+      await clear();
+      queryClient.clear();
+      navigate({ to: '/' });
+    } else {
+      try {
+        await login();
+      } catch (error: any) {
+        console.error('Login error:', error);
+        if (error.message === 'User is already authenticated') {
+          await clear();
+          setTimeout(() => login(), 300);
+        }
+      }
+    }
+  };
 
   const navLinks = [
     { to: '/', label: 'Home' },
+    { to: '/create', label: 'Create' },
     { to: '/about', label: 'About' },
     { to: '/contact', label: 'Contact' },
     { to: '/privacy', label: 'Privacy' },
   ];
 
-  const handleNavigation = (to: string) => {
-    setIsOpen(false);
-    navigate({ to });
-  };
-
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-border bg-background sticky top-0 z-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-3">
-              <img 
-                src="/assets/icon.png" 
-                alt="MOD x RDX" 
-                className="h-10 w-10 rounded-full object-cover"
-              />
-              <span className="font-bold text-lg">MOD x RDX</span>
-            </Link>
+    <div className="min-h-screen flex flex-col bg-background">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <img
+              src="/assets/icon.png"
+              alt="MOD x RDX"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <span className="text-xl font-bold">MOD x RDX</span>
+          </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  activeProps={{ className: 'text-foreground' }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Button asChild size="sm">
-                <Link to="/create">
-                  <Plus className="w-4 h-4 mr-2" />
-                  New Post
-                </Link>
-              </Button>
-            </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-sm font-medium transition-colors hover:text-primary"
+                activeProps={{ className: 'text-primary' }}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button
+              onClick={handleAuth}
+              disabled={isLoggingIn}
+              variant={isAuthenticated ? 'outline' : 'default'}
+              size="sm"
+            >
+              {isLoggingIn ? 'Logging in...' : isAuthenticated ? 'Logout' : 'Login'}
+            </Button>
+          </nav>
 
-            {/* Mobile Navigation */}
-            <div className="md:hidden flex items-center gap-2">
-              <Button asChild size="sm">
-                <Link to="/create">
-                  <Plus className="w-4 h-4" />
-                </Link>
+          {/* Mobile Navigation */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
               </Button>
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="w-5 h-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right">
-                  <nav className="flex flex-col gap-4 mt-8">
-                    <Link to="/" className="flex items-center gap-3 mb-2" onClick={() => setIsOpen(false)}>
-                      <img 
-                        src="/assets/icon.png" 
-                        alt="MOD x RDX" 
-                        className="h-10 w-10 rounded-full object-cover"
-                      />
-                      <span className="font-bold text-lg">MOD x RDX</span>
-                    </Link>
-                    {navLinks.map((link) => (
-                      <button
-                        key={link.to}
-                        onClick={() => handleNavigation(link.to)}
-                        className="text-left text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <div className="flex flex-col gap-6 mt-8">
+                <div className="flex items-center justify-center gap-3 pb-4 border-b">
+                  <img
+                    src="/assets/icon.png"
+                    alt="MOD x RDX"
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                  <span className="text-xl font-bold">MOD x RDX</span>
+                </div>
+                <nav className="flex flex-col gap-4 text-center">
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-lg font-medium transition-colors hover:text-primary"
+                        activeProps={{ className: 'text-primary' }}
                       >
                         {link.label}
-                      </button>
-                    ))}
-                  </nav>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </nav>
+                <Button
+                  onClick={handleAuth}
+                  disabled={isLoggingIn}
+                  variant={isAuthenticated ? 'outline' : 'default'}
+                  className="w-full"
+                >
+                  {isLoggingIn ? 'Logging in...' : isAuthenticated ? 'Logout' : 'Login'}
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
@@ -98,24 +124,20 @@ export function Layout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-border bg-background mt-auto">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} MOD x RDX. All rights reserved.</p>
-            <p>
-              Built with love using{' '}
-              <a
-                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
-                  typeof window !== 'undefined' ? window.location.hostname : 'modxrdx'
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                caffeine.ai
-              </a>
-            </p>
-          </div>
+      <footer className="border-t py-6 md:py-8">
+        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} MOD x RDX. All rights reserved.</p>
+          <p className="mt-2">
+            Built with ❤️ using{' '}
+            <a
+              href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              caffeine.ai
+            </a>
+          </p>
         </div>
       </footer>
     </div>

@@ -1,19 +1,21 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
+  "projectStateVersion": 27,
   "summary": "Simple content-sharing website for posting text, links, and images with minimal design",
   "architectural_notes": [
     "HTML, CSS, and JavaScript only (no backend frameworks)",
     "Static site with no database (localStorage or JSON files for data)",
     "SEO-friendly structure with semantic HTML",
     "Minimal & clean UI with responsive design",
-    "No user authentication or login system",
     "Fast loading speed priority",
     "Mobile-friendly design",
-    "Lightweight and optimized code"
+    "Lightweight and optimized code",
+    "Internet Identity authentication for developer access control",
+    "Backend stores authorized developer principal ID",
+    "Post creation/management restricted to developer only"
   ],
   "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-homepage-that-displays-all-posts-in-a-clean-card-based-layout-with-newest-posts-first-showing-title-description-and-content-preview",
@@ -246,6 +248,190 @@
         "REQ-32"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-integrate-the-internet-identity-authentication-system-in-frontend-src-pages-createpostpage-tsx-using-the-existing-useinternetidentity-hook-to-check-authentication-state-before-rendering-the-post-creation-form",
+      "title": "Integrate the Internet Identity authentication system in frontend/src/pages/CreatePostPage.tsx using the existing useInternetIdentity hook to check authentication state before rendering the post creation form",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-login-button-to-frontend-src-components-layout-tsx-that-triggers-internet-identity-authentication-flow-and-displays-the-user-s-authentication-status",
+      "title": "Add a login button to frontend/src/components/Layout.tsx that triggers Internet Identity authentication flow and displays the user's authentication status",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-hide-the-create-post-navigation-link-in-frontend-src-components-layout-tsx-from-unauthenticated-users-so-only-authenticated-developers-can-see-and-access-the-post-creation-page",
+      "title": "Hide the 'Create Post' navigation link in frontend/src/components/Layout.tsx from unauthenticated users so only authenticated developers can see and access the post creation page",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-usecreatepost-mutation-hook-in-frontend-src-hooks-usequeries-ts-to-properly-handle-the-authenticated-actor-and-display-clear-error-messages-when-post-creation-fails-due-to-authorization-or-other-errors",
+      "title": "Update the useCreatePost mutation hook in frontend/src/hooks/useQueries.ts to properly handle the authenticated actor and display clear error messages when post creation fails due to authorization or other errors",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-backend-data-model-to-store-posts-with-fields-id-title-description-contenttype-text-link-or-image-content-text-url-imageurl-optional-and-timestamp",
+      "title": "Create a backend data model to store posts with fields: id, title, description, contentType ('text', 'link', or 'image'), content (text/URL), imageUrl (optional), and timestamp",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-backend-methods-createpost-getallposts-sorted-by-newest-first-searchposts-by-title-description-text-match-and-getpost-by-id",
+      "title": "Implement backend methods: createPost, getAllPosts (sorted by newest first), searchPosts (by title/description text match), and getPost by ID",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-edit-and-delete-buttons-to-the-postcard-component-in-frontend-src-components-postcard-tsx-that-are-visible-only-when-the-authenticated-user-s-principal-matches-the-admin-principal-stored-in-the-backend",
+      "title": "Add Edit and Delete buttons to the PostCard component in frontend/src/components/PostCard.tsx that are visible only when the authenticated user's principal matches the admin principal stored in the backend",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-edit-post-form-or-modal-in-the-frontend-that-pre-fills-with-existing-post-data-title-description-contenttype-content-imageurl-and-allows-the-developer-to-update-the-post",
+      "title": "Create an edit post form or modal in the frontend that pre-fills with existing post data (title, description, contentType, content, imageUrl) and allows the developer to update the post",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-confirmation-dialog-in-the-frontend-that-appears-before-deleting-a-post-requiring-the-developer-to-confirm-the-deletion-action",
+      "title": "Add a confirmation dialog in the frontend that appears before deleting a post, requiring the developer to confirm the deletion action",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-react-query-mutation-hooks-in-frontend-src-hooks-usequeries-ts-for-updatepost-and-deletepost-operations-that-use-the-authenticated-actor-and-automatically-invalidate-the-posts-cache-upon-success",
+      "title": "Create React Query mutation hooks in frontend/src/hooks/useQueries.ts for updatePost and deletePost operations that use the authenticated actor and automatically invalidate the posts cache upon success",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-edit-and-delete-text-buttons-in-frontend-src-components-postcard-tsx-with-small-icon-style-buttons-using-pencil-icon-for-edit-and-trash-icon-for-delete",
+      "title": "Replace the current Edit and Delete text buttons in frontend/src/components/PostCard.tsx with small icon-style buttons using pencil icon for Edit and trash icon for Delete",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reposition-the-edit-and-delete-icon-buttons-to-the-top-upper-area-of-each-post-card-in-frontend-src-components-postcard-tsx-removing-them-from-their-current-bottom-position",
+      "title": "Reposition the Edit and Delete icon buttons to the top/upper area of each post card in frontend/src/components/PostCard.tsx, removing them from their current bottom position",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-maintain-the-existing-developer-only-visibility-logic-for-the-edit-and-delete-icon-buttons-in-frontend-src-components-postcard-tsx-ensuring-they-only-appear-when-the-authenticated-user-s-principal-matches-the-admin-principal",
+      "title": "Maintain the existing developer-only visibility logic for the Edit and Delete icon buttons in frontend/src/components/PostCard.tsx, ensuring they only appear when the authenticated user's principal matches the admin principal",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-all-existing-functionality-for-the-edit-and-delete-operations-in-frontend-src-components-postcard-tsx-including-the-edit-form-pre-fill-behavior-and-delete-confirmation-dialog",
+      "title": "Preserve all existing functionality for the Edit and Delete operations in frontend/src/components/PostCard.tsx, including the edit form pre-fill behavior and delete confirmation dialog",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-comprehensive-error-handling-to-the-usecreatepost-mutation-hook-in-frontend-src-hooks-usequeries-ts-to-catch-and-display-clear-error-messages-when-post-creation-fails-including-network-errors-authorization-failures-and-validation-errors",
+      "title": "Add comprehensive error handling to the useCreatePost mutation hook in frontend/src/hooks/useQueries.ts to catch and display clear error messages when post creation fails, including network errors, authorization failures, and validation errors",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-loading-state-indicators-to-the-post-creation-form-in-frontend-src-pages-createpostpage-tsx-that-show-when-a-post-is-being-submitted-disable-the-submit-button-during-upload-and-provide-visual-feedback-that-the-operation-is-in-progress",
+      "title": "Add loading state indicators to the post creation form in frontend/src/pages/CreatePostPage.tsx that show when a post is being submitted, disable the submit button during upload, and provide visual feedback that the operation is in progress",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-retry-logic-with-exponential-backoff-to-the-usecreatepost-mutation-in-frontend-src-hooks-usequeries-ts-to-automatically-retry-failed-uploads-up-to-3-times-before-showing-an-error-improving-reliability-for-intermittent-network-issues",
+      "title": "Add retry logic with exponential backoff to the useCreatePost mutation in frontend/src/hooks/useQueries.ts to automatically retry failed uploads up to 3 times before showing an error, improving reliability for intermittent network issues",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-form-validation-to-the-post-creation-form-in-frontend-src-pages-createpostpage-tsx-that-validates-required-fields-title-description-content-before-submission-and-displays-inline-validation-errors-for-missing-or-invalid-data",
+      "title": "Add form validation to the post creation form in frontend/src/pages/CreatePostPage.tsx that validates required fields (title, description, content) before submission and displays inline validation errors for missing or invalid data",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-usecreatepost-mutation-in-frontend-src-hooks-usequeries-ts-to-automatically-invalidate-and-refetch-the-posts-query-immediately-after-successful-post-creation-ensuring-the-new-post-appears-in-the-homepage-list-without-manual-refresh",
+      "title": "Update the useCreatePost mutation in frontend/src/hooks/useQueries.ts to automatically invalidate and refetch the posts query immediately after successful post creation, ensuring the new post appears in the homepage list without manual refresh",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-success-toast-notification-in-frontend-src-pages-createpostpage-tsx-that-displays-when-a-post-is-successfully-created-providing-clear-feedback-that-the-upload-completed-and-the-post-was-saved",
+      "title": "Add success toast notification in frontend/src/pages/CreatePostPage.tsx that displays when a post is successfully created, providing clear feedback that the upload completed and the post was saved",
+      "reqIds": [
+        "REQ-56"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-three-dot-menu-dropdown-in-frontend-src-components-layout-tsx-to-center-align-all-menu-items-home-contact-us-privacy-policy-vertically-for-a-clean-centered-list-presentation",
+      "title": "Update the three-dot menu dropdown in frontend/src/components/Layout.tsx to center-align all menu items (Home, Contact Us, Privacy Policy) vertically for a clean, centered list presentation",
+      "reqIds": [
+        "REQ-57"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-edit-icon-button-in-frontend-src-components-postcard-tsx-with-a-pencil-icon-using-lucide-react-pencil-component-maintaining-its-position-at-the-top-of-the-post-card-developer-only-visibility-and-all-existing-edit-functionality-including-form-pre-fill",
+      "title": "Replace the existing Edit icon button in frontend/src/components/PostCard.tsx with a pencil icon (using lucide-react Pencil component), maintaining its position at the top of the post card, developer-only visibility, and all existing edit functionality including form pre-fill",
+      "reqIds": [
+        "REQ-58"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-delete-icon-button-in-frontend-src-components-postcard-tsx-with-a-trash-delete-icon-using-lucide-react-trash2-component-maintaining-its-position-at-the-top-of-the-post-card-developer-only-visibility-and-all-existing-delete-functionality-including-confirmation-dialog",
+      "title": "Replace the existing Delete icon button in frontend/src/components/PostCard.tsx with a trash/delete icon (using lucide-react Trash2 component), maintaining its position at the top of the post card, developer-only visibility, and all existing delete functionality including confirmation dialog",
+      "reqIds": [
+        "REQ-59"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -301,22 +487,6 @@
       "id": "AR-9",
       "summary": "Privacy Policy page",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Create a backend data model to store posts with fields: id, title, description, contentType ('text', 'link', or 'image'), content (text/URL), imageUrl (optional), and timestamp",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Implement backend methods: createPost, getAllPosts (sorted by newest first), searchPosts (by title/description text match), and getPost by ID",
-      "reqIds": [
-        "REQ-2"
-      ],
       "status": "pending"
     },
     {
@@ -402,6 +572,138 @@
     {
       "id": "AR-25",
       "summary": "Update the website background/UI color to #7B2EFF throughout the entire site",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Implement Internet Identity authentication system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Store developer's Internet Identity principal ID in backend for authorization",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Restrict post creation/editing/deletion to developer's principal ID only",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Hide post creation form completely from non-authenticated users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Debug and fix the post creation flow in backend/main.mo to ensure posts are properly saved to stable storage and returned correctly when createPost is called",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Add an admin principal ID field to backend/main.mo stable storage and initialize it with a configurable developer principal ID that will be used for authorization checks",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Modify the createPost function in backend/main.mo to check the caller's principal ID against the stored admin principal ID and only allow post creation if they match",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Add edit and delete buttons to each post card, visible only to authenticated developer",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-35",
+      "summary": "Create edit post form/modal that pre-fills with existing post data",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-36",
+      "summary": "Add confirmation dialog before deleting posts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-37",
+      "summary": "Implement backend updatePost function with admin authorization check",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-38",
+      "summary": "Implement backend deletePost function with admin authorization check",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-39",
+      "summary": "Auto-refresh post list after successful edit or delete operations",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-43",
+      "summary": "Implement an updatePost backend function in backend/main.mo that accepts postId and updated post fields (title, description, contentType, content, imageUrl), verifies the caller's principal matches the stored admin principal, and updates the post in stable storage if authorized",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-44",
+      "summary": "Implement a deletePost backend function in backend/main.mo that accepts postId, verifies the caller's principal matches the stored admin principal, and removes the post from stable storage if authorized",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-46",
+      "summary": "Update the HomePage component in frontend/src/pages/HomePage.tsx to integrate the edit and delete functionality, ensuring the post list refreshes automatically after successful operations",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-47",
+      "summary": "Convert Edit and Delete buttons to small icon-style buttons (pencil and trash icons) and move them to the top/upper area of each post card, maintaining developer-only visibility",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-48",
+      "summary": "Optimize post/media upload flow to prevent intermittent failures where uploads get stuck or posts don't appear after submission, add comprehensive error handling and validation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-49",
+      "summary": "Center-align all menu items (Home, Contact Us, Privacy Policy) in the three-dot dropdown menu for a clean vertical centered list presentation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-50",
+      "summary": "Replace existing Edit and Delete icon buttons at the top of each post with pencil icon for Edit and trash icon for Delete, maintaining developer-only visibility and all existing functionality",
       "reqIds": [],
       "status": "pending"
     }

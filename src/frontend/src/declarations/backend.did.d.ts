@@ -23,14 +23,30 @@ export interface Post {
   'timestamp' : Time,
 }
 export type Time = bigint;
+export interface UserProfile { 'name' : string }
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createPost' : ActorMethod<
     [string, string, ContentType, string, [] | [string]],
     bigint
   >,
+  'deletePost' : ActorMethod<[bigint], undefined>,
   'getAllPosts' : ActorMethod<[], Array<Post>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getPost' : ActorMethod<[bigint], Post>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'searchPosts' : ActorMethod<[string], Array<Post>>,
+  'updatePost' : ActorMethod<
+    [bigint, string, string, ContentType, string, [] | [string]],
+    undefined
+  >,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];
