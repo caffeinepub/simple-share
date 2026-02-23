@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 17,
+  "summary": "Simple content-sharing website for posting text, links, and images with minimal design",
+  "architectural_notes": [
+    "HTML, CSS, and JavaScript only (no backend frameworks)",
+    "Static site with no database (localStorage or JSON files for data)",
+    "SEO-friendly structure with semantic HTML",
+    "Minimal & clean UI with responsive design",
+    "No user authentication or login system",
+    "Fast loading speed priority",
+    "Mobile-friendly design",
+    "Lightweight and optimized code"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-homepage-that-displays-all-posts-in-a-clean-card-based-layout-with-newest-posts-first-showing-title-description-and-content-preview",
+      "title": "Create a homepage that displays all posts in a clean, card-based layout with newest posts first, showing title, description, and content preview",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-post-creation-form-with-fields-for-title-description-content-type-selector-text-link-image-content-input-and-optional-image-url-input",
+      "title": "Build a post creation form with fields for title, description, content type selector (text/link/image), content input, and optional image URL input",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-for-link-posts-render-the-link-as-clickable-and-include-a-copy-link-button-that-copies-the-url-to-clipboard",
+      "title": "For link posts, render the link as clickable and include a 'Copy Link' button that copies the URL to clipboard",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-for-image-posts-display-the-image-inline-within-the-post-card-with-proper-sizing-and-aspect-ratio-preservation",
+      "title": "For image posts, display the image inline within the post card with proper sizing and aspect ratio preservation",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-basic-search-bar-that-filters-displayed-posts-by-matching-keywords-in-title-or-description",
+      "title": "Implement a basic search bar that filters displayed posts by matching keywords in title or description",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-static-pages-for-about-contact-and-privacy-policy-with-navigation-links-in-header-or-footer",
+      "title": "Create static pages for About, Contact, and Privacy Policy with navigation links in header or footer",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-minimal-clean-design-system-with-a-monochromatic-color-scheme-white-or-dark-mode-ample-whitespace-readable-typography-and-no-heavy-animations",
+      "title": "Apply a minimal, clean design system with a monochromatic color scheme (white or dark mode), ample whitespace, readable typography, and no heavy animations",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-entire-website-is-fully-responsive-with-mobile-first-layout-that-adapts-smoothly-to-tablet-and-desktop-screens",
+      "title": "Ensure the entire website is fully responsive with mobile-first layout that adapts smoothly to tablet and desktop screens",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-application-configuration-to-support-custom-domain-modxrdx-io-by-configuring-the-canister-settings-and-dns-mapping-requirements",
+      "title": "Update the application configuration to support custom domain 'modxrdx.io' by configuring the canister settings and DNS mapping requirements",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-html-meta-tags-and-page-title-to-reflect-the-custom-domain-name-modxrdx-io",
+      "title": "Update the HTML meta tags and page title to reflect the custom domain name 'modxrdx.io'",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-vivid-purple-background-color-across-all-pages-of-the-website-by-updating-the-root-css-variables-in-frontend-src-index-css-to-use-a-vivid-purple-color-scheme-for-both-light-and-dark-modes",
+      "title": "Apply a vivid purple background color across all pages of the website by updating the root CSS variables in frontend/src/index.css to use a vivid purple color scheme for both light and dark modes",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-to-the-navigation-menu-in-frontend-src-components-layout-tsx-displaying-it-prominently-in-both-desktop-and-mobile-sheet-menu-navigation",
+      "title": "Add 'MOD x RDX' text in bold sans-serif font to the navigation menu in frontend/src/components/Layout.tsx, displaying it prominently in both desktop and mobile (sheet menu) navigation",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-mod-x-rdx-text-in-bold-sans-serif-font-prominently-on-the-homepage-in-frontend-src-pages-homepage-tsx-positioned-above-the-search-bar-and-post-listings",
+      "title": "Display 'MOD x RDX' text in bold sans-serif font prominently on the homepage in frontend/src/pages/HomePage.tsx, positioned above the search bar and post listings",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-entire-contact-page-content-in-frontend-src-pages-contactpage-tsx-with-only-two-social-media-links-instagram-https-www-instagram-com-modxrdx-igsh-dmrpazf4m2dndhe2-with-label-instagram-and-telegram-https-t-me-modxrdx-with-label-telegram-removing-all-existing-contact-information-and-text",
+      "title": "Replace the entire Contact page content in frontend/src/pages/ContactPage.tsx with only two social media links: Instagram (https://www.instagram.com/modxrdx?igsh=dmRpazF4M2dndHE2) with label 'Instagram ~' and Telegram (https://t.me/MODxRDX) with label 'Telegram ~', removing all existing contact information and text",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-all-simple-share-text-and-branding-from-the-navigation-header-in-frontend-src-components-layout-tsx",
+      "title": "Remove all 'Simple Share' text and branding from the navigation header in frontend/src/components/Layout.tsx",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-mod-x-rdx-text-in-the-navigation-header-of-frontend-src-components-layout-tsx-with-the-uploaded-mod-x-rdx-logo-image-image2-png-making-it-clickable-and-linking-to-the-homepage-route",
+      "title": "Replace the 'MOD x RDX' text in the navigation header of frontend/src/components/Layout.tsx with the uploaded MOD x RDX logo image (image2.png), making it clickable and linking to the homepage route ('/')",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-mod-x-rdx-text-on-the-homepage-in-frontend-src-pages-homepage-tsx-with-the-uploaded-mod-x-rdx-logo-image-image2-png-making-it-clickable-and-linking-to-the-homepage-route",
+      "title": "Replace the 'MOD x RDX' text on the homepage in frontend/src/pages/HomePage.tsx with the uploaded MOD x RDX logo image (image2.png), making it clickable and linking to the homepage route ('/')",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-mobile-sheet-menu-navigation-in-frontend-src-components-layout-tsx-to-display-the-mod-x-rdx-logo-image-instead-of-the-mod-x-rdx-text-ensuring-it-is-properly-sized-for-mobile-view",
+      "title": "Update the mobile sheet menu navigation in frontend/src/components/Layout.tsx to display the MOD x RDX logo image instead of the 'MOD x RDX' text, ensuring it is properly sized for mobile view",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-any-remaining-references-to-simple-share-throughout-the-frontend-codebase-including-aboutpage-tsx-and-privacypolicypage-tsx-to-use-mod-x-rdx-instead",
+      "title": "Update any remaining references to 'Simple Share' throughout the frontend codebase (including AboutPage.tsx and PrivacyPolicyPage.tsx) to use 'MOD x RDX' instead",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-existing-mod-x-rdx-logos-throughout-the-site-navigation-header-in-layout-tsx-homepage-in-homepage-tsx-and-mobile-sheet-menu-in-layout-tsx-with-the-new-circular-mod-x-rdx-logo-from-the-uploaded-image-picsart-26-02-20-07-23-40-468-png-ensuring-the-logo-remains-clickable-and-links-to-the-homepage-route",
+      "title": "Replace all existing MOD x RDX logos throughout the site (navigation header in Layout.tsx, homepage in HomePage.tsx, and mobile sheet menu in Layout.tsx) with the new circular MOD x RDX logo from the uploaded image (Picsart_26-02-20_07-23-40-468.png), ensuring the logo remains clickable and links to the homepage route ('/')",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enable-the-copy-link-address-context-menu-option-when-users-long-press-or-right-click-on-images-urls-and-other-media-elements-across-the-website-including-post-images-in-postcard-tsx-and-any-other-media-content",
+      "title": "Enable the 'Copy link address' context menu option when users long-press or right-click on images, URLs, and other media elements across the website, including post images in PostCard.tsx and any other media content",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-mod-x-rdx-logo-in-the-navigation-header-of-frontend-src-components-layout-tsx-with-the-newly-uploaded-icon-png-image-ensuring-the-logo-remains-clickable-and-links-to-the-homepage-route",
+      "title": "Replace the MOD x RDX logo in the navigation header of frontend/src/components/Layout.tsx with the newly uploaded icon.png image, ensuring the logo remains clickable and links to the homepage route ('/')",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-mod-x-rdx-logo-on-the-homepage-in-frontend-src-pages-homepage-tsx-with-the-newly-uploaded-icon-png-image-ensuring-the-logo-remains-clickable-and-links-to-the-homepage-route",
+      "title": "Replace the MOD x RDX logo on the homepage in frontend/src/pages/HomePage.tsx with the newly uploaded icon.png image, ensuring the logo remains clickable and links to the homepage route ('/')",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-mod-x-rdx-logo-in-the-mobile-sheet-menu-navigation-of-frontend-src-components-layout-tsx-with-the-newly-uploaded-icon-png-image-ensuring-it-is-properly-sized-for-mobile-view",
+      "title": "Replace the MOD x RDX logo in the mobile sheet menu navigation of frontend/src/components/Layout.tsx with the newly uploaded icon.png image, ensuring it is properly sized for mobile view",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-circular-css-cropping-border-radius-50-to-the-icon-png-logo-in-all-locations-navigation-header-homepage-mobile-menu-to-ensure-it-displays-as-a-perfect-circle-without-modifying-the-source-image-file-itself",
+      "title": "Apply circular CSS cropping (border-radius: 50%) to the icon.png logo in all locations (navigation header, homepage, mobile menu) to ensure it displays as a perfect circle, without modifying the source image file itself",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-website-background-color-throughout-all-pages-in-frontend-src-index-css-to-use-a-visually-appealing-purple-shade-by-modifying-the-root-css-variables-for-both-light-and-dark-modes",
+      "title": "Update the website background color throughout all pages in frontend/src/index.css to use a visually appealing purple shade by modifying the root CSS variables for both light and dark modes",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-next-to-the-icon-png-logo-on-the-left-side-of-the-main-page-in-frontend-src-pages-homepage-tsx-ensuring-the-text-and-logo-are-horizontally-aligned",
+      "title": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page in frontend/src/pages/HomePage.tsx, ensuring the text and logo are horizontally aligned",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-next-to-the-icon-png-logo-in-the-mobile-sheet-menu-navigation-in-frontend-src-components-layout-tsx-ensuring-the-text-and-logo-are-horizontally-aligned",
+      "title": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation in frontend/src/components/Layout.tsx, ensuring the text and logo are horizontally aligned",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-website-background-and-ui-color-scheme-throughout-all-pages-in-frontend-src-index-css-to-use-the-hex-color-7b2eff-by-modifying-the-root-css-variables-for-both-light-and-dark-modes",
+      "title": "Update the website background and UI color scheme throughout all pages in frontend/src/index.css to use the hex color #7B2EFF by modifying the root CSS variables for both light and dark modes",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Homepage with latest text posts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Option to post clickable links",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Image upload/display support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Simple post layout (title + description + link/image)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Copy text button for links",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Basic search functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "About page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Contact page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Privacy Policy page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Create a backend data model to store posts with fields: id, title, description, contentType ('text', 'link', or 'image'), content (text/URL), imageUrl (optional), and timestamp",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement backend methods: createPost, getAllPosts (sorted by newest first), searchPosts (by title/description text match), and getPost by ID",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Apply vivid purple background across all pages of the website",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add 'MOD x RDX' text in bold sans-serif font to the navigation menu and homepage",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Replace Contact page content entirely with Instagram (https://www.instagram.com/modxrdx?igsh=dmRpazF4M2dndHE2) and Telegram (https://t.me/MODxRDX) links only",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Remove all 'Simple Share' text/branding and replace with MOD x RDX logo in navigation header and homepage header, make logo clickable linking to homepage",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Replace all existing logos with new circular MOD x RDX logo (with transparent background up to white border) in navigation header, homepage, and mobile menu",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Enable 'Copy link address' context menu option when users long-press or right-click on images, URLs, and other media",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Process the circular MOD x RDX logo to have a fully transparent background by removing all background layers and cropping cleanly to just the white border, maintaining the circular shape with no extra padding",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Process the existing circular MOD x RDX logo (Picsart_26-02-20_07-23-40-468.png) to remove all background layers completely, crop cleanly to just the white border, and maintain the perfectly circular shape with no extra padding or background",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Replace all logos across the site with the newly uploaded icon.png, keeping the logo exactly as is without any modifications, effects, or alterations to the image content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Apply circular cropping to the logo if needed to ensure it's perfectly round, without changing the logo content itself",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Update the website background color throughout all pages to a nice purple shade",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Add 'MOD x RDX' text in bold sans-serif font next to the logo on the left side of the main page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Add 'MOD x RDX' text in bold sans-serif font next to the logo in the three-dot menu (mobile navigation)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Update the website background/UI color to #7B2EFF throughout the entire site",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Simple Share",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

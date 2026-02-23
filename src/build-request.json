@@ -1,0 +1,82 @@
+{
+  "kind": "build_request",
+  "title": "Add 'MOD x RDX' branding text and update UI color to #7B2EFF",
+  "projectName": "MOD x RDX",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-30",
+      "text": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page in frontend/src/pages/HomePage.tsx, ensuring the text and logo are horizontally aligned",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please add the text \"MOD x RDX\" in **bold sans-serif font**: - Next to the MOD x RDX logo on the **left side of the main page**"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The text 'MOD x RDX' appears next to the circular logo on the homepage",
+        "The text uses a bold sans-serif font family",
+        "The text and logo are horizontally aligned",
+        "The layout remains responsive on all screen sizes"
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "text": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation in frontend/src/components/Layout.tsx, ensuring the text and logo are horizontally aligned",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please add the text \"MOD x RDX\" in **bold sans-serif font**: - Next to the MOD x RDX logo in the **three-dot menu**"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The text 'MOD x RDX' appears next to the circular logo in the mobile sheet menu",
+        "The text uses a bold sans-serif font family",
+        "The text and logo are horizontally aligned within the mobile menu",
+        "The mobile menu layout remains clean and functional"
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "text": "Update the website background and UI color scheme throughout all pages in frontend/src/index.css to use the hex color #7B2EFF by modifying the root CSS variables for both light and dark modes",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Also, please set the website background/UI color live using this hex code: #7B2EFF"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The background color uses #7B2EFF throughout the site",
+        "The color scheme is consistent across all pages",
+        "Both light and dark mode configurations use the #7B2EFF color appropriately",
+        "Text remains readable against the new background color",
+        "The color applies to relevant UI elements (background, cards, borders, etc.)"
+      ]
+    }
+  ],
+  "constraints": [
+    "Keep the existing icon.png logo unchanged",
+    "Do not modify the backend",
+    "Preserve all existing functionality and features",
+    "Maintain responsive design for all screen sizes"
+  ],
+  "nonGoals": [
+    "Changing the logo image itself",
+    "Modifying post creation or display functionality",
+    "Altering navigation structure or links",
+    "Adding new pages or routes"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

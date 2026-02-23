@@ -1,0 +1,59 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-next-to-the-icon-png-logo-on-the-left-side-of-the-main-page-in-frontend-src-pages-homepage-tsx-ensuring-the-text-and-logo-are-horizontally-aligned",
+      "featureTitle": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page in frontend/src/pages/HomePage.tsx, ensuring the text and logo are horizontally aligned",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-30"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-mod-x-rdx-text-in-bold-sans-serif-font-next-to-the-icon-png-logo-in-the-mobile-sheet-menu-navigation-in-frontend-src-components-layout-tsx-ensuring-the-text-and-logo-are-horizontally-aligned",
+      "featureTitle": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation in frontend/src/components/Layout.tsx, ensuring the text and logo are horizontally aligned",
+      "files": [
+        "frontend/src/components/Layout.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-31"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-website-background-and-ui-color-scheme-throughout-all-pages-in-frontend-src-index-css-to-use-the-hex-color-7b2eff-by-modifying-the-root-css-variables-for-both-light-and-dark-modes",
+      "featureTitle": "Update the website background and UI color scheme throughout all pages in frontend/src/index.css to use the hex color #7B2EFF by modifying the root CSS variables for both light and dark modes",
+      "files": [
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-32"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

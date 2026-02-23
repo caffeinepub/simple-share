@@ -1,0 +1,59 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add 'MOD x RDX' branding text and update UI color to #7B2EFF",
+  "requirements": [
+    {
+      "id": "REQ-30",
+      "summary": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo on the left side of the main page, ensuring horizontal alignment",
+      "acceptanceCriteria": [
+        "The text 'MOD x RDX' appears next to the circular logo on the homepage",
+        "The text uses a bold sans-serif font family",
+        "The text and logo are horizontally aligned",
+        "The layout remains responsive on all screen sizes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo. Wrap the logo image and text in a flex container with horizontal alignment (items-center). Apply font-bold and sans-serif font family to the text element. Ensure the container is responsive across all screen sizes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "summary": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo in the mobile sheet menu navigation, ensuring horizontal alignment",
+      "acceptanceCriteria": [
+        "The text 'MOD x RDX' appears next to the circular logo in the mobile sheet menu",
+        "The text uses a bold sans-serif font family",
+        "The text and logo are horizontally aligned within the mobile menu",
+        "The mobile menu layout remains clean and functional"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add 'MOD x RDX' text in bold sans-serif font next to the icon.png logo within the mobile sheet menu. Wrap the logo and text in a flex container with horizontal alignment (items-center). Apply font-bold and sans-serif font family to the text element. Maintain clean mobile menu layout and functionality."
+        }
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "summary": "Update the website background and UI color scheme to use #7B2EFF by modifying root CSS variables for both light and dark modes",
+      "acceptanceCriteria": [
+        "The background color uses #7B2EFF throughout the site",
+        "The color scheme is consistent across all pages",
+        "Both light and dark mode configurations use the #7B2EFF color appropriately",
+        "Text remains readable against the new background color",
+        "The color applies to relevant UI elements (background, cards, borders, etc.)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update the root CSS variables in both light and dark mode configurations to use #7B2EFF (converted to OKLCH format). Modify background, primary, accent, and other relevant color tokens to incorporate the purple color while ensuring text readability. Apply the color scheme consistently to backgrounds, cards, borders, and UI elements throughout the application."
+        }
+      ]
+    }
+  ]
+}
